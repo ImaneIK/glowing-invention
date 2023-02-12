@@ -1,5 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../DarkMode/DarkThemeProvider.dart';
 
 class GlassMorphism extends StatefulWidget {
   final Widget child;
@@ -30,6 +33,8 @@ class GlassMorphism extends StatefulWidget {
 class _GlassMorphismState extends State<GlassMorphism> {
   @override
   Widget build(BuildContext context) {
+    var object = Provider.of<DarkThemeProvider>(context).darkTheme;
+
     return ClipRRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: widget.blurx, sigmaY: widget.blury),
@@ -51,7 +56,7 @@ class _GlassMorphismState extends State<GlassMorphism> {
             ),
             border: Border.all(
               width: 1.5,
-              color: Colors.white.withOpacity(1),
+              color: Colors.white.withOpacity( object ? 0.2 : 1),
             ),
           ),
           child: widget.child,

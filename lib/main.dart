@@ -1,6 +1,8 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lumosmaxima/splash_screen.dart';
+import 'package:lumosmaxima/views/dashboard.dart';
+import 'package:lumosmaxima/views/settings.dart';
 import 'package:provider/provider.dart';
 import 'DarkMode/DarkThemeProvider.dart';
 import 'DarkMode/dark_theme_styles.dart';
@@ -33,6 +35,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
     return ChangeNotifierProvider(
       create: (_) => themeChangeProvider,
       child: Consumer<DarkThemeProvider>(
@@ -41,7 +44,7 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             theme: Styles.themeData(themeChangeProvider.darkTheme, context),
             home: AnimatedSplashScreen(
-              splash: 'logo.png',
+              splash: 'smart-home.png',
               duration: 1000,
               nextScreen: LoginScreen(),
               splashTransition: SplashTransition.fadeTransition,

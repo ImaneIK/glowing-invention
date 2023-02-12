@@ -87,7 +87,7 @@ class _DeviceSectionState extends State<DeviceSection> {
               ],
             ),
             const SizedBox(
-              height: 20,
+              height: 8,
             ),
             Text(
               model.allYatch[index].title,

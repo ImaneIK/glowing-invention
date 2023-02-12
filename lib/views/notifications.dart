@@ -21,22 +21,20 @@ class _NotificationsState extends State<Notifications> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-       // backgroundColor: Color.fromRGBO(254, 244, 255, 1),
-        title: Text('Notifications'),
-       /* leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: Icon(Icons.menu,color: Colors.deepPurple),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          },
-        ),*/
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        title:
+        Text("Notifications", style: Theme.of(context).textTheme.displaySmall),
+        leading: Icon(Icons.notifications_active_outlined),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(backgroundColor: Colors.transparent, backgroundImage: AssetImage("smart-home.png"),),
+          )
+        ],
       ),
       //drawer: MyDrawer(navigatorKey),
 
-
+      backgroundColor: Theme.of(context).canvasColor,
 
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -51,13 +49,13 @@ class _NotificationsState extends State<Notifications> {
 
               SizedBox(height: 20,),
 
-              list_of_users("Security","Activate the two-step authentification",Icons.person_outline),
+              notificationTile("Security","Activate the two-step authentification",Icons.security),
 
-              list_of_users("Devices","The Microwave has finished",Icons.person_outline),
+              notificationTile("Devices","The Microwave has finished",Icons.devices),
 
-              list_of_users("Users","A new person detected near",Icons.person_outline),
+              notificationTile("Users","A new person detected near",Icons.person_outline),
 
-              list_of_users("Devices","New device detected: Alexa",Icons.person_outline),
+              notificationTile("Devices","New device detected: Alexa",Icons.qr_code_rounded),
 
 
             ],
@@ -68,35 +66,29 @@ class _NotificationsState extends State<Notifications> {
   }
 
 
-  Widget list_of_users(name,role,icon){
+  Widget notificationTile(name,role,icon){
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5,horizontal: 17),
       child: GlassMorphism(
-        start: 0.2,
-        end: 0.4,
-        topRight: 20,
-        topLeft: 20,
-        bottomLeft: 20,
-        bottomRight: 20,
+        start: 0.1,
+        end: 0.6,
+        topRight: 10,
+        topLeft: 10,
+        bottomLeft: 10,
+        bottomRight: 10,
         blurx: 2,
-        blury: 2,
+        blury: 4,
         child: ListTile(
-          leading: Icon(icon,color: Colors.deepPurple),
+
+          leading: Icon(icon),
           title:  Text(
-            name, style: TextStyle(color: Colors.deepPurple),
+            name,
             textScaleFactor: 1,
           ),
-          trailing:  Icon(Icons.arrow_forward_ios_outlined,color: Colors.deepPurple),
-          subtitle:  Text(role,style: TextStyle(color: Colors.deepPurple),),
+          trailing:  Icon(Icons.arrow_forward_ios_outlined),
+          subtitle:  Text(role),
           selected: true,
-          onTap: () {
-            setState(() {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => UserDetails()));
-            });
-          },
+
         ),
       ),
     );

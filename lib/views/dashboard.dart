@@ -5,11 +5,9 @@ import '../Model/connectedModel.dart';
 import '../Model/roomModel.dart';
 import '../Widgets/glass.dart';
 
-
 class Dashboard extends StatefulWidget {
   final EnabledDevices model = EnabledDevices();
   final Rooms model2 = Rooms();
-
 
   @override
   State<Dashboard> createState() => _DashboardState();
@@ -23,19 +21,24 @@ class _DashboardState extends State<Dashboard> {
     var object = Provider.of<DarkThemeProvider>(context).darkTheme;
 
     return Scaffold(
-      // backgroundColor: Color.fromRGBO(0, 0, 0, 0),
       appBar: AppBar(
-          automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-
-        title: Text ("Dashboard", style: TextStyle(color: Theme.of(context).appBarTheme.titleTextStyle?.color),),
-      //  backgroundColor: Color.fromRGBO(254, 244, 255, 1), title: Text('Dashboard',style: TextStyle(color: Colors.deepPurple),),
+        title:
+            Text("Dashboard", style: Theme.of(context).textTheme.displaySmall),
+        leading: Icon(Icons.dashboard_outlined),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(backgroundColor: Colors.transparent, backgroundImage: AssetImage("smart-home.png"),),
+          )
+        ],
       ),
-      //drawer: MyDrawer(navigatorKey),
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage( object ?  "assets/bg2.png"  : "assets/bg1.jpg"),
+          image: DecorationImage(
+              image: AssetImage(object ? "assets/bg2.png" : "assets/bg1.jpg"),
               fit: BoxFit.cover),
         ),
         child: SingleChildScrollView(
@@ -43,26 +46,18 @@ class _DashboardState extends State<Dashboard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                margin: EdgeInsets.only(top: 5, left:15, right: 15, bottom: 5),
-                padding:
-                EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                margin: EdgeInsets.only(top: 5, left: 15, right: 15, bottom: 5),
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 30,
+                      height: 10,
                     ),
-                    Text(
-                      "Welcome Home,",
-                      style: TextStyle(
-                          fontSize: 24, color: Colors.deepPurple),
-                    ),
-                    Text("John Doe",
-                        style: TextStyle(
-                            fontSize: 29,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.deepPurple,
-                            fontStyle: FontStyle.italic)),
+                    Text("Wed, 15 Feb",style: Theme.of(context).textTheme.titleMedium),
+                    Text("Hi, John Doe,", style: Theme.of(context).textTheme.displayLarge),
+                    //Text("John Doe",textAlign: TextAlign.left, style: Theme.of(context).textTheme.displayMedium),
                     SizedBox(
                       height: 5,
                     ),
@@ -72,107 +67,95 @@ class _DashboardState extends State<Dashboard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 10,
-                  ),
+                  SizedBox(height: 10,),
                   Row(
                     children: [
-                      Icon(Icons.wb_cloudy_outlined,
-                          color: Colors.deepPurple),
-                      Text("25°C",
-                          style: TextStyle(color: Colors.deepPurple))
+                      Icon(Icons.wb_cloudy_outlined),
+                      Text("25°C", style: Theme.of(context).textTheme.titleMedium)
                     ],
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
+                  SizedBox(width: 20,),
                   Row(
                     children: [
-                      Icon(Icons.water_drop_outlined,
-                          color: Colors.deepPurple),
-                      Text("12%",
-                          style: TextStyle(color: Colors.deepPurple))
+                      Icon(Icons.water_drop_outlined),
+                      Text("12%", style:Theme.of(context).textTheme.titleMedium)
                     ],
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
+                  SizedBox(width: 20,),
                   Row(
                     children: [
-                      Icon(Icons.co2, color: Colors.deepPurple, size: 40,),
-                      Text("0.2%",
-                          style: TextStyle(color: Colors.deepPurple))
+                      Icon(Icons.co2, size: 40,),
+                      Text("0.2%", style: Theme.of(context).textTheme.titleMedium)
                     ],
                   ),
                 ],
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10,),
+
+
+
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                 margin: EdgeInsets.all(10),
                 height: 200,
                 child: GlassMorphism(
                   start: 0.1,
-                  end: 0.1,
+                  end: 0.5,
                   topRight: 30,
                   topLeft: 30,
                   bottomLeft: 30,
                   bottomRight: 30,
-                  blurx: 3,
-                  blury: 3,
+                  blurx: 1,
+                  blury: 2,
                   child: Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     margin: EdgeInsets.all(20),
                     height: 200,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
+
                         Container(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Icon(Icons.door_back_door_outlined,
-                                  color: Colors.deepPurple),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Text(
-                                "Portal",
-                                style: TextStyle(
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.deepPurple),
-                              ),
-                              Text(
-                                "Locked",
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.deepPurple),
-                              ),
+                              Icon(Icons.door_back_door_outlined,),
+
+                              SizedBox( height: 20,),
+
+                              Text( "Portal",  style: Theme.of(context).textTheme.displaySmall),
+
+                              Text( "Locked", style: Theme.of(context).textTheme.titleSmall,),
                             ],
                           ),
-                        )
+                        ),
+
                       ],
                     ),
                   ),
                 ),
               ),
-              SizedBox(
-                height: 15,
-              ),
+
+
+
+              SizedBox(height: 30,),
+
+
               Container(
                 margin: EdgeInsets.only(left: 25),
-                child: Text(
-                  "Active devices",
-                  style: TextStyle(color: Colors.deepPurple, fontSize: 20),
+                child: Row(
+                  children: [
+                    Icon(Icons.devices),
+                    SizedBox(width: 10,),
+                    Text("Active devices", style:Theme.of(context).textTheme.displaySmall,),
+                  ],
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+
+
+              SizedBox(height: 10, ),
+
+
               Container(
                 height: 150,
                 margin: EdgeInsets.only(left: 20, right: 20),
@@ -186,19 +169,26 @@ class _DashboardState extends State<Dashboard> {
                       SizedBox(width: 20),
                 ),
               ),
-              SizedBox(
-                height: 15,
-              ),
+
+
+              SizedBox(height: 30,),
+
+
               Container(
                 margin: EdgeInsets.only(left: 25),
-                child: Text(
-                  "My Rooms",
-                  style: TextStyle(color: Colors.deepPurple, fontSize: 20),
+                child: Row(
+                  children: [
+                    Icon(Icons.chair),
+                    SizedBox(width: 10,),
+                    Text("My Rooms", style: Theme.of(context).textTheme.displaySmall,),
+                  ],
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+
+
+              SizedBox(height: 10,),
+
+
               Container(
                 height: 150,
                 margin: EdgeInsets.only(left: 20, right: 20),
@@ -212,6 +202,8 @@ class _DashboardState extends State<Dashboard> {
                       SizedBox(width: 20),
                 ),
               ),
+
+              SizedBox(height: 30,)
             ],
           ),
         ),
@@ -222,7 +214,7 @@ class _DashboardState extends State<Dashboard> {
   Widget _buildRoomCard(Rooms model, int index) {
     return GlassMorphism(
       start: 0.1,
-      end: 0.1,
+      end: 0.3,
       topRight: 30,
       topLeft: 30,
       bottomLeft: 30,
@@ -239,20 +231,17 @@ class _DashboardState extends State<Dashboard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Icon(widget.model2.allYatch[index].icon, color: Colors.deepPurple),
+            Icon(widget.model2.allYatch[index].icon),
             SizedBox(
               height: 20,
             ),
             Text(
               widget.model2.allYatch[index].title,
-              style: TextStyle(
-                  fontSize: 19,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.deepPurple),
+              style: Theme.of(context).textTheme.displaySmall
             ),
             Text(
               "${widget.model2.allYatch[index].nbrDevices.toString()} devices",
-              style: TextStyle(fontSize: 14, color: Colors.deepPurple),
+              style:Theme.of(context).textTheme.titleSmall
             ),
           ],
         ),
@@ -263,7 +252,7 @@ class _DashboardState extends State<Dashboard> {
   Widget _buildDeviceCard(DeviceModel model, int index) {
     return GlassMorphism(
       start: 0.1,
-      end: 0.1,
+      end: 0.3,
       topRight: 30,
       topLeft: 30,
       bottomLeft: 30,
@@ -280,21 +269,17 @@ class _DashboardState extends State<Dashboard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Icon(widget.model.enabledDevices[index].icon,
-                color: Colors.deepPurple),
+            Icon(widget.model.enabledDevices[index].icon,),
             SizedBox(
               height: 20,
             ),
             Text(
               widget.model.enabledDevices[index].title,
-              style: TextStyle(
-                  fontSize: 19,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.deepPurple),
+              style: Theme.of(context).textTheme.displaySmall
             ),
             Text(
               widget.model.enabledDevices[index].status,
-              style: TextStyle(fontSize: 14, color: Colors.deepPurple),
+                style: Theme.of(context).textTheme.titleSmall
             ),
           ],
         ),

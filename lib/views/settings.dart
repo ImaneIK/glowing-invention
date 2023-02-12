@@ -17,8 +17,16 @@ class _SettingsState extends State<Settings> {
 
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text('App Settings'),
-
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          title:
+          Text("Settings", style: Theme.of(context).textTheme.displaySmall),
+          leading: Icon(Icons.settings_rounded),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CircleAvatar(backgroundColor: Colors.transparent, backgroundImage: AssetImage("smart-home.png"),),
+            )
+          ],
         ),
         body: SettingsPage()
 

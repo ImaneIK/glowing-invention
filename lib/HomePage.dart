@@ -58,10 +58,10 @@ class _HomePageState extends State<HomePage> {
               },
               icon: pageIndex == 0
                   ? const Icon(
-                Icons.home_filled,
+                Icons.dashboard,
               )
                   : const Icon(
-                Icons.home_outlined,
+                Icons.dashboard_outlined,
               ),
             ),
             IconButton(
@@ -73,10 +73,10 @@ class _HomePageState extends State<HomePage> {
               },
               icon: pageIndex == 1
                   ? const Icon(
-                Icons.work,
+                Icons.devices,
               )
                   : const Icon(
-                Icons.work_outline_outlined,
+                Icons.devices_outlined,
               ),
             ),
             IconButton(
@@ -88,10 +88,10 @@ class _HomePageState extends State<HomePage> {
               },
               icon: pageIndex == 2
                   ? const Icon(
-                Icons.widgets,
+                Icons.notifications_active,
               )
                   : const Icon(
-                Icons.widgets_outlined,
+                Icons.notifications_active_outlined,
               ),
             ),
             IconButton(
@@ -103,10 +103,10 @@ class _HomePageState extends State<HomePage> {
               },
               icon: pageIndex == 3
                   ? const Icon(
-                Icons.person,
+                Icons.settings,
               )
                   : const Icon(
-                Icons.person_outline,
+                Icons.settings_outlined,
               ),
             ),
           ],

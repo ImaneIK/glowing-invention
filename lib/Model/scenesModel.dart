@@ -24,7 +24,7 @@ class Scenes extends Model{
     Scene(
       icon: Icons.kitchen_outlined,
       id: '3',
-      title : 'Morning Glory',
+      title : 'Tha Morning',
       status : 'Connected',
       isEnable : true,
     ),

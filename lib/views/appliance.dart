@@ -35,58 +35,40 @@ class _ApplianceState extends State<Appliance> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0.1,
-        title: Text("Appliance",),
-        /*leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: Icon(Icons.menu, color: Colors.deepPurple),
-              onPressed: () {
-                //open drawer
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          },
-        ),*/
-      //  backgroundColor: Color.fromRGBO(254, 244, 255, 1), elevation: 0,
-      ),
+        title:
+        Text("Appliance", style: Theme.of(context).textTheme.displaySmall),
+        leading: Icon(Icons.developer_board),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CircleAvatar(backgroundColor: Colors.transparent, backgroundImage: AssetImage("smart-home.png"),),
+          )
+        ],),
       //drawer: MyDrawer(navigatorKey),
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
-           image: DecorationImage(image: AssetImage( object ?  "assets/bg2.png"  : "assets/bg1.jpg"),
-           fit: BoxFit.cover),
+            image: DecorationImage(
+                image: AssetImage(object ? "assets/bg2.png" : "assets/bg1.jpg"),
+                fit: BoxFit.cover),
           ),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-
                 SizedBox(
-                  height: 15,
+                  height: 20,
                 ),
-
                 Container(
                   width: MediaQuery.of(context).size.width * 0.85,
                   child: TextField(
                     decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide:
-                        BorderSide(color: Colors.deepPurple, ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.deepPurple),
-                      ),
                       labelText: "Search",
-                      labelStyle: TextStyle(color: Colors.deepPurple, fontSize: 15),
-                      suffixIcon: Icon(Icons.search_outlined,color: Colors.deepPurple,),
-                    ),
-                    style: TextStyle(color: Colors.deepPurple),
+                      suffixIcon: Icon(Icons.search_outlined,),),
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
-
                 Container(
                   margin: EdgeInsets.all(30),
                   child: Row(
@@ -108,16 +90,8 @@ class _ApplianceState extends State<Appliance> {
                   blurx: 2,
                   blury: 2,
                   child: Container(
-                    /* decoration: const BoxDecoration(
-                      color: Colors.lightBlue,
-                      borderRadius: BorderRadius.only(
-                          topLeft:Radius.circular(50),
-                          topRight: Radius.circular(50)),
-                    ),*/
-
                     padding: EdgeInsets.all(20),
                     child: Column(
-                      //mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
@@ -127,7 +101,7 @@ class _ApplianceState extends State<Appliance> {
                             children: [
                               TextButton(
                                   style: TextButton.styleFrom(
-                                    foregroundColor: Colors.deepPurple,
+                                    foregroundColor: object ? Colors.white70 : Colors.deepPurple,
                                     textStyle: const TextStyle(fontSize: 18),
                                   ),
                                   onPressed: () {
@@ -138,7 +112,7 @@ class _ApplianceState extends State<Appliance> {
                                   child: Text("Scenes")),
                               TextButton(
                                   style: TextButton.styleFrom(
-                                    foregroundColor: Colors.deepPurple,
+                                      foregroundColor: object ? Colors.white70 : Colors.deepPurple,
                                     textStyle: const TextStyle(fontSize: 18),
                                   ),
                                   onPressed: () {
@@ -185,16 +159,8 @@ Widget dashCard(icon, text, context) {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(
-              icon,
-              color: Colors.deepPurple,
-              size: 30,
-            ),
-            Text(
-              text,
-              style: TextStyle(fontSize: 18, color: Colors.deepPurple),
-              textAlign: TextAlign.center,
-            ),
+            Icon(icon, size: 30,),
+            Text(text, style: TextStyle(fontSize: 18), textAlign: TextAlign.center,),
           ],
         ),
       ),

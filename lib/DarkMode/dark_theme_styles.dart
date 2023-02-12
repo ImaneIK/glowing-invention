@@ -6,8 +6,48 @@ class Styles {
 
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
-      primarySwatch: Colors.red,
+
+        textTheme:
+        TextTheme(
+          displayLarge: TextStyle(fontSize: 40, color: isDarkTheme ? Colors.white70 : Color.fromRGBO(0, 23, 114,1)),
+          displayMedium: TextStyle(fontSize: 30,color: isDarkTheme ? Colors.white70 : Color.fromRGBO(0, 23, 114,1)),
+          displaySmall: TextStyle(fontSize: 20,color: isDarkTheme ? Colors.white70 : Color.fromRGBO(0, 23, 114,1)),
+          titleLarge: TextStyle(fontSize: 30,color: isDarkTheme ? Colors.white70 : Color.fromRGBO(0, 23, 114,1)),
+          titleMedium: TextStyle(fontSize: 15,color: isDarkTheme ? Colors.white70 : Color.fromRGBO(0, 23, 114,1)),
+        ).apply(
+        bodyColor: isDarkTheme ? Colors.white70 : Color.fromRGBO(0, 23, 114,1),
+        displayColor: isDarkTheme ? Colors.white70 : Color.fromRGBO(0, 23, 114,1),
+        ),
+
+
+      listTileTheme: ListTileThemeData(
+        selectedColor:isDarkTheme ? Colors.white70 : Color.fromRGBO(0, 23, 114,1),
+        textColor: isDarkTheme ? Colors.white70 : Color.fromRGBO(0, 23, 114,1),
+        iconColor: isDarkTheme ? Colors.white70 : Color.fromRGBO(0, 23, 114,1),
+      ),
+
+     // primarySwatch: Colors.red,
       primaryColor: isDarkTheme ? Color.fromARGB(255,0,20,64) : Colors.white70,
+
+
+
+      inputDecorationTheme: InputDecorationTheme(
+hintStyle: TextStyle(color: isDarkTheme ? Colors.white70 : Color.fromRGBO(0, 23, 114,1),),
+        prefixIconColor: isDarkTheme ? Colors.white70 : Color.fromRGBO(0, 23, 114,1),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0),
+            borderSide: BorderSide(color: Colors.deepPurple),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0),
+            borderSide:
+            BorderSide(color: isDarkTheme ? Colors.white70 : Color.fromRGBO(0, 23, 114, 1)),
+          ),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0),
+            borderSide: BorderSide(color: isDarkTheme ? Colors.white70 : Color.fromRGBO(0, 23, 114, 1) )),
+          labelStyle: TextStyle(color: isDarkTheme ? Colors.white70 : Color.fromRGBO(0, 23, 114, 1))),
+
 
       backgroundColor: isDarkTheme ? Color.fromARGB(255,0,20,64) : Color.fromRGBO(254, 244, 255, 1),
 
@@ -21,7 +61,7 @@ class Styles {
 
       focusColor: isDarkTheme ? Color(0xff0B2512) : Color(0xffA8DAB5),
       disabledColor: Colors.grey,
-      textSelectionTheme: TextSelectionThemeData(selectionColor:isDarkTheme ? Colors.white : Colors.black ) ,
+      textSelectionTheme: TextSelectionThemeData(selectionColor:isDarkTheme ? Colors.white : Colors.deepPurpleAccent ) ,
       cardColor: isDarkTheme ? Color(0xFF151515) : Colors.white,
       canvasColor: isDarkTheme ? Color.fromARGB(255,0,20,64) : Color.fromRGBO(254, 244, 255, 1),
       brightness: isDarkTheme ? Brightness.dark : Brightness.light,
@@ -33,6 +73,9 @@ class Styles {
 
       ),
       appBarTheme: AppBarTheme(
+        iconTheme: IconThemeData(
+          color: isDarkTheme ? Colors.white70  : Colors.deepPurple,
+        ),
         titleTextStyle: TextStyle(color:isDarkTheme ? Colors.white70  : Colors.deepPurple,),
         backgroundColor: isDarkTheme ? Color.fromARGB(255,0,20,64) : Color.fromRGBO(254, 244, 255, 1),
 
