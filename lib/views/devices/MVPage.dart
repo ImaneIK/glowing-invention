@@ -22,7 +22,7 @@ class _MVPageState extends State<MVPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 0, 20, 64),
+      backgroundColor: Theme.of(context).canvasColor,
       body: SafeArea(
         //minimum: const EdgeInsets.symmetric(horizontal: 25),
         child: Column(
@@ -37,28 +37,18 @@ class _MVPageState extends State<MVPage> {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          IconButton(
-                            icon: Icon(Icons.arrow_back_ios,
-                                color: Colors.white70),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
+
+                          IconButton(icon: Icon(Icons.arrow_back_ios,),
+                            onPressed: () {Navigator.pop(context);},),
+
+                          Center(child: Text( "Microwave",
+                            style: Theme.of(context).textTheme.displaySmall),
                           ),
-                          Center(
-                              child: Text(
-                            "Microwave",
-                            style:
-                                TextStyle(color: Colors.white70, fontSize: 25),
-                          )),
-                          IconButton(
-                            icon: Icon(Icons.more_vert, color: Colors.white70),
-                            onPressed: () {},
-                          ),
-                        ]),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                          IconButton( icon: Icon(Icons.more_vert), onPressed: () {}),
+                        ]),),
+
+                  const SizedBox( height: 20,),
+
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Column(
@@ -68,36 +58,33 @@ class _MVPageState extends State<MVPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text('Microwave #M354',
-                                style: TextStyle(
-                                    color: Colors.white70, fontSize: 18)),
+                                style: Theme.of(context).textTheme.titleLarge
+                            ),
                             Switch.adaptive(
                               value: isenabled,
                               onChanged: (bool v) {
                                 setState(() {
                                   isenabled = v;
+                                  if (isenabled) {
+                                    isconnected = 'Connected';
+                                  } else if (isenabled == false) {
+                                    isconnected = 'Disconnected';
+                                  }
                                 });
                               },
-                              activeColor: SmartyColors.primary,
                             )
                           ],
                         ),
-                        Text(
-                          isconnected,
-                          style: TextStyle(color: Colors.white70),
-                        ),
+                        Text( isconnected ),
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  const Text(
+
+                  const SizedBox( height: 30,),
+
+                   Text(
                     'Temperature',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 26,
-                      color: Colors.white70,
-                    ),
+                    style: Theme.of(context).textTheme.displaySmall
                   ),
                   const SizedBox(
                     height: 20,
@@ -204,7 +191,7 @@ class _MVPageState extends State<MVPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
                   Center(
                     child: IconButton(
@@ -229,6 +216,8 @@ class _MVPageState extends State<MVPage> {
                 ],
               ),
             ),
+
+
             Container(
               width: MediaQuery.of(context).size.width,
               height: 200,
@@ -248,9 +237,9 @@ class _MVPageState extends State<MVPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  listItemStats('./assets/cool.png', "cooling Mode", isenabled),
-                  listItemStats('./assets/31048.png', "Set Timer", isenabled),
-                  listItemStats('./assets/heat.png', "Turbo Mode", isenabled)
+                  listItemStats(Icons.ac_unit_outlined, "cooling Mode", isenabled),
+                  listItemStats(Icons.timer_outlined, "Set Timer", isenabled),
+                  listItemStats(Icons.heat_pump_outlined, "Turbo Mode", isenabled)
                 ],
               ),
             ),
@@ -260,7 +249,7 @@ class _MVPageState extends State<MVPage> {
     );
   }
 
-  Widget listItemStats(String imgpath, String name, bool value) {
+  Widget listItemStats( icon, String name, bool value) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.25,
       height: 150,
@@ -283,16 +272,9 @@ class _MVPageState extends State<MVPage> {
       child: Column(
         children: <Widget>[
           SizedBox(height: 20),
-          Image(
-              image: AssetImage(imgpath),
-              width: MediaQuery.of(context).size.width * 0.1,
-              height: MediaQuery.of(context).size.width * 0.1,
-              color: value == true ? Colors.black : Colors.white),
+          Icon(icon),
           SizedBox(height: 15),
-          Text(name,
-              style: TextStyle(
-                  fontSize: 13,
-                  color: value == true ? Colors.black : Colors.white)),
+          Text(name, style: Theme.of(context).textTheme.titleMedium),
           SizedBox(height: 5),
           Switch(
             value: value,
@@ -302,7 +284,6 @@ class _MVPageState extends State<MVPage> {
                 print(newVal);
               });
             },
-            activeColor: Colors.blue,
           )
         ],
       ),

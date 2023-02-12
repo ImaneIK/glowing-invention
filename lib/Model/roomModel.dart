@@ -15,7 +15,7 @@ class RoomModel extends Model{
     Room(
       icon: Icons.living_outlined,
       id: '2',
-      title : 'living room',
+      title : 'Lounge',
       nbrDevices : 2,
     ),
 

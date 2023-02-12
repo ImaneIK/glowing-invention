@@ -71,6 +71,7 @@ class _DashboardState extends State<Dashboard> {
                   Row(
                     children: [
                       Icon(Icons.wb_cloudy_outlined),
+                      SizedBox(width: 8,),
                       Text("25°C", style: Theme.of(context).textTheme.titleMedium)
                     ],
                   ),
@@ -119,13 +120,13 @@ class _DashboardState extends State<Dashboard> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Icon(Icons.door_back_door_outlined,),
+                              Icon(Icons.door_back_door_outlined,size: 40,),
 
                               SizedBox( height: 20,),
 
                               Text( "Portal",  style: Theme.of(context).textTheme.displaySmall),
 
-                              Text( "Locked", style: Theme.of(context).textTheme.titleSmall,),
+                              Text( "Locked", style: Theme.of(context).textTheme.titleMedium,),
                             ],
                           ),
                         ),
@@ -147,7 +148,7 @@ class _DashboardState extends State<Dashboard> {
                   children: [
                     Icon(Icons.devices),
                     SizedBox(width: 10,),
-                    Text("Active devices", style:Theme.of(context).textTheme.displaySmall,),
+                    Text("Active devices", style:Theme.of(context).textTheme.titleLarge,),
                   ],
                 ),
               ),
@@ -180,7 +181,7 @@ class _DashboardState extends State<Dashboard> {
                   children: [
                     Icon(Icons.chair),
                     SizedBox(width: 10,),
-                    Text("My Rooms", style: Theme.of(context).textTheme.displaySmall,),
+                    Text("My Rooms", style: Theme.of(context).textTheme.titleLarge,),
                   ],
                 ),
               ),
@@ -233,7 +234,7 @@ class _DashboardState extends State<Dashboard> {
           children: <Widget>[
             Icon(widget.model2.allYatch[index].icon),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Text(
               widget.model2.allYatch[index].title,
@@ -241,7 +242,7 @@ class _DashboardState extends State<Dashboard> {
             ),
             Text(
               "${widget.model2.allYatch[index].nbrDevices.toString()} devices",
-              style:Theme.of(context).textTheme.titleSmall
+              style:Theme.of(context).textTheme.titleMedium
             ),
           ],
         ),
@@ -271,7 +272,7 @@ class _DashboardState extends State<Dashboard> {
           children: <Widget>[
             Icon(widget.model.enabledDevices[index].icon,),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Text(
               widget.model.enabledDevices[index].title,
@@ -279,7 +280,7 @@ class _DashboardState extends State<Dashboard> {
             ),
             Text(
               widget.model.enabledDevices[index].status,
-                style: Theme.of(context).textTheme.titleSmall
+                style: Theme.of(context).textTheme.titleMedium
             ),
           ],
         ),

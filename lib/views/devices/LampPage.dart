@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
+import '../../DarkMode/DarkThemeProvider.dart';
 import '../../Widgets/power_btn.dart';
 import '../../Widgets/typography.dart';
 
@@ -20,7 +22,7 @@ class _LampPageState extends State<LampPage> {
 
         builder: (context, child) {
           return Scaffold(
-            backgroundColor: Color.fromARGB(255,0,20,64),
+            backgroundColor: Theme.of(context).canvasColor,
 
             body: SingleChildScrollView(
               child: Padding(
@@ -34,20 +36,20 @@ class _LampPageState extends State<LampPage> {
 
                         GestureDetector(
                           onTap: () => Navigator.pop(context),
-                          child: const Icon(Icons.arrow_back_ios,color: Colors.white70),
+                          child: const Icon(Icons.arrow_back_ios),
                         ),
                         Expanded(
                           child: Center(
                             child: Text(
                               'Light',
-                              style:
-                              TextStyle(color: Colors.white70, fontSize: 30)
+                              style: Theme.of(context).textTheme.displaySmall
                             ),
                           ),
                         ),
                       ],
                     ),
                     SizedBox(height: 36.h),
+
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -56,39 +58,31 @@ class _LampPageState extends State<LampPage> {
                           children: [
                             Text(
                               'Smart lamp #L354',
-                              style: TextStyles.headline4
-                                  .copyWith(color: Colors.white70),
+                              style: Theme.of(context).textTheme.titleLarge,
                             ),
-                          /*  Switch.adaptive(
-                              value: _isOn,
-                              onChanged: (bool v) {
-                                setState(() {
-                                  _isOn = v;
-
-                                });
-                              },
-                              activeColor: SmartyColors.primary,
-                            )*/
                           ],
                         ),
-                        Text(
-                          isconnected,
-                          style: TextStyles.body.copyWith(color: Colors.white70),
+                        Text(isconnected,style: Theme.of(context).textTheme.titleMedium,),
+                        SizedBox(height: 30.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            listItemStats(Icons.ac_unit_outlined, "cooling Mode", false),
+                            listItemStats(Icons.timer_outlined, "Set Timer", false),
+                            listItemStats(Icons.local_fire_department_outlined, "Turbo Mode", false)
+                          ],
                         ),
+
                       ],
                     ),
-                    SizedBox(height: 24.h),
-                    if (_isOn)
-                      Image.asset(
-                        'assets/light_on.png',
-                        width: 159.w,
-                      )
-                    else
-                      Image.asset(
-                        'assets/light_off.png',
-                        width: 75.w,
-                      ),
-                    SizedBox(height: 40.h),
+                      SizedBox(height: 20.h),
+                      if (_isOn)
+                      Image.asset( 'bulb(1).png', width: 230.w,)
+                      else
+                      Image.asset( 'bulb.png', width: 230.w,),
+
+
+                      SizedBox(height: 40.h),
 
                     ChipButton(
                       child: const Icon(Icons.power_settings_new_rounded),
@@ -108,8 +102,54 @@ class _LampPageState extends State<LampPage> {
               ),
             ),
           );
+
         });
 
+  }
+
+
+  Widget listItemStats( icon, String name, bool value) {
+    var object = Provider.of<DarkThemeProvider>(context).darkTheme;
+
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.25,
+      height: 150,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: object
+                ? [
+              const Color.fromRGBO(222, 248, 255, 0.95),
+              const Color.fromRGBO(222, 248, 255, 0.4)
+            ]
+                : [
+              const Color.fromRGBO(222, 248, 255, 0.5),
+              const Color.fromRGBO(222, 248, 255, 0.1)
+            ]),
+        //color: value == true ? Colors.white : Color.fromRGBO(75, 97, 88, 1.0)
+      ),
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: 20),
+          Icon(icon),
+          SizedBox(height: 15),
+          Text(name, style: Theme.of(context).textTheme.titleMedium),
+          SizedBox(height: 5),
+          Switch(
+            value: value,
+            onChanged: (newVal) {
+              setState(() {
+                value = newVal;
+                print(newVal);
+              });
+            },
+            activeColor: Color.fromRGBO(4, 20, 244,1),
+          )
+        ],
+      ),
+    );
   }
 }
 

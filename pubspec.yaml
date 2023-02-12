@@ -75,6 +75,8 @@ flutter:
     - assets/logo.png
     - assets/smart-home(1).png
     - assets/smart-home.png
+    - assets/bulb(1).png
+    - assets/bulb.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

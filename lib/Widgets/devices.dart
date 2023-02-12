@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../DarkMode/DarkThemeProvider.dart';
 import '../Model/connectedModel.dart';
 import '../Model/model.dart';
 import '../views/devices/CoffeeMakerPage.dart';
@@ -43,6 +45,8 @@ class _DeviceSectionState extends State<DeviceSection> {
   }
 
   Widget _buildDeviceCard(DeviceModel model, int index) {
+    var object = Provider.of<DarkThemeProvider>(context).darkTheme;
+
     return InkWell(
       onTap: () => getItemAndNavigate(model.allYatch[index], context),
       child: Container(
@@ -77,7 +81,7 @@ class _DeviceSectionState extends State<DeviceSection> {
                         : const Color(0xffa3a3a3)),
                 Switch(
                     value: model.allYatch[index].isEnable,
-                    activeColor: const Color(0xff457be4),
+                    activeColor: Color.fromRGBO(4, 20, 244,1),
                     onChanged: (_) {
                       setState(() {
                         model.allYatch[index].isEnable =
@@ -185,7 +189,6 @@ class _DeviceSectionState extends State<DeviceSection> {
       child: Switch(
         value: isSwitched,
         onChanged: toggleSwitch,
-        activeColor: Colors.deepPurple,
       ),
     );
   }
@@ -236,8 +239,12 @@ class DeviceDescription extends StatefulWidget {
 }
 
 class _DeviceDescriptionState extends State<DeviceDescription> {
+
+
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         body: Column(
             mainAxisAlignment: MainAxisAlignment.start,

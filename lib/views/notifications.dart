@@ -23,7 +23,7 @@ class _NotificationsState extends State<Notifications> {
         automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         title:
-        Text("Notifications", style: Theme.of(context).textTheme.displaySmall),
+        Text("Notifications", style: Theme.of(context).textTheme.titleLarge),
         leading: Icon(Icons.notifications_active_outlined),
         actions: [
           Padding(
@@ -84,9 +84,11 @@ class _NotificationsState extends State<Notifications> {
           title:  Text(
             name,
             textScaleFactor: 1,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           trailing:  Icon(Icons.arrow_forward_ios_outlined),
-          subtitle:  Text(role),
+          subtitle:  Text(role, style: Theme.of(context).textTheme.titleMedium,
+          ),
           selected: true,
 
         ),
