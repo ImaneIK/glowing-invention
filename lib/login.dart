@@ -49,15 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Text(
                       "My Home",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontStyle: FontStyle.normal,
-                        fontFamily: 'Sans serif',
-                        fontWeight: FontWeight.w400,
-                        color: object
-                            ? Colors.white70
-                            : Color.fromRGBO(0, 23, 114, 1),
-                      ),
+                      style: Theme.of(context).textTheme.displayMedium
                     ),
                     SizedBox(
                       height: 30,
@@ -154,13 +146,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 side: BorderSide(
                                     color: object
                                         ? Colors.white70
-                                        : Color.fromRGBO(0, 23, 114, 1),
+                                        : Color.fromRGBO(4, 20, 244,1),
                                     width: 1),
                               ),
                               child: Text("Sign In",
                                   style: Theme.of(context)
                                       .textTheme
-                                      .titleMedium),
+                                      .titleLarge),
                             ),
                           ),
                           SizedBox(

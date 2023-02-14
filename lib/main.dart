@@ -1,22 +1,17 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:lumosmaxima/splash_screen.dart';
-import 'package:lumosmaxima/views/dashboard.dart';
-import 'package:lumosmaxima/views/devices/LampPage.dart';
-import 'package:lumosmaxima/views/devices/MVPage.dart';
-import 'package:lumosmaxima/views/devices/ac.dart';
-import 'package:lumosmaxima/views/settings.dart';
 import 'package:provider/provider.dart';
 import 'DarkMode/DarkThemeProvider.dart';
 import 'DarkMode/dark_theme_styles.dart';
-import 'HomePage.dart';
 import 'login.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -49,7 +44,7 @@ class _MyAppState extends State<MyApp> {
             home: AnimatedSplashScreen(
               splash: 'smart-home.png',
               duration: 1000,
-              nextScreen: LoginScreen(),
+              nextScreen: const LoginScreen(),
               splashTransition: SplashTransition.fadeTransition,
               splashIconSize: 200,
             ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:lumosmaxima/views/settings.dart';
 import 'package:provider/provider.dart';
 import '../DarkMode/DarkThemeProvider.dart';
 import '../Model/connectedModel.dart';
 import '../Model/roomModel.dart';
 import '../Widgets/glass.dart';
+import '../main.dart';
 
 class Dashboard extends StatefulWidget {
   final EnabledDevices model = EnabledDevices();
@@ -25,12 +27,27 @@ class _DashboardState extends State<Dashboard> {
         automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         title:
-            Text("Dashboard", style: Theme.of(context).textTheme.displaySmall),
+            Text("Dashboard", style: Theme.of(context).textTheme.titleLarge),
         leading: Icon(Icons.dashboard_outlined),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: CircleAvatar(backgroundColor: Colors.transparent, backgroundImage: AssetImage("smart-home.png"),),
+            child: PopupMenuButton(
+
+                itemBuilder: (context) => [
+                  const PopupMenuItem(value: 0, child: Text("Settings")),
+                  const PopupMenuItem(value: 1, child: Text("Logout"))
+                ],
+                onSelected: (int value) {
+                  setState(() {
+                    if (value == 0) {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Settings()));
+                    } else {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
+                    }
+                  });
+                },
+                child: CircleAvatar(backgroundColor: Colors.transparent, backgroundImage: AssetImage("avatar.jpg"),)),
           )
         ],
       ),

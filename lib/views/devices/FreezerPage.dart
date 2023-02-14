@@ -33,7 +33,7 @@ class _FreezerPageState extends State<FreezerPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      icon: Icon(Icons.arrow_back),
+                      icon: const Icon(Icons.arrow_back),
                       onPressed: () {
                         Navigator.pop(context);
                       },
@@ -44,7 +44,7 @@ class _FreezerPageState extends State<FreezerPage> {
                       style: Theme.of(context).textTheme.titleLarge,
                     )),
                     IconButton(
-                      icon: Icon(Icons.more_vert),
+                      icon: const Icon(Icons.more_vert),
                       onPressed: () {},
                     ),
                   ]),
@@ -62,10 +62,10 @@ class _FreezerPageState extends State<FreezerPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   listItemStats(
-                      Icons.ac_unit_outlined, "cooling Mode", isenabled),
-                  listItemStats(Icons.timer_outlined, "Set Timer", isenabled),
-                  listItemStats(Icons.shopping_bag_outlined,
-                      "Shopping List", isenabled)
+                      Icons.ac_unit_outlined, "Frozen Mode", false),
+                  listItemStats(Icons.mode_fan_off_outlined, "fan mode", false),
+                  listItemStats(
+                      Icons.energy_savings_leaf_outlined, "Energy Saving", isenabled)
                 ],
               ),
             ),
@@ -124,9 +124,9 @@ class _FreezerPageState extends State<FreezerPage> {
                                 offset: Offset(1, 3))
                           ]),
                       child: SleekCircularSlider(
-                        min: kMinDegree,
-                        max: kMaxDegree,
-                        initialValue: 22,
+                        min: 0,
+                        max: 5,
+                        initialValue: 2.5,
                         appearance: CircularSliderAppearance(
                           startAngle: 180,
                           angleRange: 180,
@@ -134,7 +134,7 @@ class _FreezerPageState extends State<FreezerPage> {
                           customWidths: CustomSliderWidths(
                             trackWidth: 10,
                             shadowWidth: 0,
-                            progressBarWidth: 01,
+                            progressBarWidth: 0.5,
                             handlerSize: 15,
                           ),
                           customColors: CustomSliderColors(

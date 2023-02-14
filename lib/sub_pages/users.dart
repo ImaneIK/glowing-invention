@@ -5,12 +5,11 @@ class UserConf extends StatefulWidget {
   const UserConf({Key? key}) : super(key: key);
 
   @override
-  State<UserConf> createState() => _UserConffState();
+  State<UserConf> createState() => _UserConfState();
 }
 
-class _UserConffState extends State<UserConf> {
-
-  late int val=1;
+class _UserConfState extends State<UserConf> {
+  late int val = 1;
 
   Future<void> _showAddModal(BuildContext context) async {
     final taskController = TextEditingController();
@@ -20,19 +19,19 @@ class _UserConffState extends State<UserConf> {
       context: context,
       builder: (context) {
         return Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: <Widget>[
               TextField(
                 controller: taskController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Task',
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 children: [
-                  Text('Status'),
+                  const Text('Status'),
                   BottomSheetSwitch(
                     switchValue: false,
                     valueChanged: (value) {
@@ -42,7 +41,7 @@ class _UserConffState extends State<UserConf> {
                 ],
               ),
               ElevatedButton(
-                child: Text('Add'),
+                child: const Text('Add'),
                 onPressed: () {
                   setState(() {
                     TodoItem.todoItems.add(
@@ -67,28 +66,28 @@ class _UserConffState extends State<UserConf> {
       context: context,
       builder: (context) {
         return Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: <Widget>[
               TextField(
                 controller: taskController,
-                decoration: InputDecoration(
-                  labelText: 'Task',
+                decoration: const InputDecoration(
+                  labelText: 'Username',
                 ),
                 onChanged: (value) {
                   todoItem.title = value;
                 },
               ),
-              SizedBox(height: 20),
-            BottomSheetSwitch(
-              switchValue: _status,
-              valueChanged: (value) {
-                _status = value;
-              },
-            ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
+              BottomSheetSwitch(
+                switchValue: _status,
+                valueChanged: (value) {
+                  _status = value;
+                },
+              ),
+              const SizedBox(height: 20),
               ElevatedButton(
-                child: Text('Save changes'),
+                child: const Text('Save changes'),
                 onPressed: () {
                   setState(() {
                     TodoItem.todoItems[index] =
@@ -115,31 +114,31 @@ class _UserConffState extends State<UserConf> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    //  backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text('User List'),
         actions: [
           PopupMenuButton<int>(
-              icon: const Icon(Icons.more_vert, color: Colors.white),
+              icon: const Icon(Icons.more_vert),
               itemBuilder: (context) => [
-                const PopupMenuItem(value: 0, child: Text("List view")),
-                const PopupMenuItem(value: 1, child: Text("Grid view"))
-              ],
+                    const PopupMenuItem(value: 0, child: Text("List view")),
+                    const PopupMenuItem(value: 1, child: Text("Grid view"))
+                  ],
               onSelected: (int value) {
                 setState(() {
-                  if(value==0) {val= 0;}
-                  else{val = 1;}
+                  if (value == 0) {
+                    val = 0;
+                  } else {
+                    val = 1;
+                  }
                 });
-
               }),
         ],
       ),
 
       body: whichView(),
 
-
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
           setState(() {
             _showAddModal(context);
@@ -149,32 +148,29 @@ class _UserConffState extends State<UserConf> {
     );
   }
 
-
-
-  Widget whichView(){
-    if(val==0){
+  Widget whichView() {
+    if (val == 0) {
       return listViewWidget();
-    }else{
+    } else {
       return gridViewWidget();
     }
   }
 
-  Widget listViewWidget(){
+  Widget listViewWidget() {
     return ListView.builder(
       itemCount: TodoItem.todoItems.length,
       itemBuilder: (context, index) {
         return ListTile(
           title: Text(TodoItem.todoItems[index].title),
           trailing: IconButton(
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
             onPressed: () {
               setState(() {
                 _deleteTask(index);
               });
             },
           ),
-          subtitle: Text(
-              TodoItem.todoItems[index].status ? 'Admin' : 'Guest'),
+          subtitle: Text(TodoItem.todoItems[index].status ? 'Admin' : 'Guest'),
           onTap: () {
             _showEditModal(context, TodoItem.todoItems[index], index);
           },
@@ -183,103 +179,102 @@ class _UserConffState extends State<UserConf> {
     );
   }
 
-  Widget gridViewWidget(){
-        return Container(
-            alignment: Alignment.topCenter,
-            height: 487,
-            child: GridView.count(
-              crossAxisCount: 2,
-              padding: const EdgeInsets.all(0),
-              children: List.generate(TodoItem.todoItems.length, (index) {
-                return TodoItem.todoItems[index].title != null
-                    ? gridCard(TodoItem.todoItems[index], index)
-                    : Container(
-                  height: 120,
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 30, vertical: 50),
-                  margin: index % 2 == 0
-                      ? const EdgeInsets.fromLTRB(15, 7.5, 7.5, 7.5)
-                      : const EdgeInsets.fromLTRB(7.5, 7.5, 15, 7.5),
-                  child: FloatingActionButton(
-                    backgroundColor: Colors.white,
-                    child: const Icon(
-                      Icons.add,
-                      color: Colors.black,
+  Widget gridViewWidget() {
+    return Container(
+        alignment: Alignment.topCenter,
+        height: 487,
+        child: GridView.count(
+          crossAxisCount: 2,
+          padding: const EdgeInsets.all(0),
+          children: List.generate(TodoItem.todoItems.length, (index) {
+            return TodoItem.todoItems[index].title != null
+                ? gridCard(TodoItem.todoItems[index], index)
+                : Container(
+                    height: 120,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 50),
+                    margin: index % 2 == 0
+                        ? const EdgeInsets.fromLTRB(15, 7.5, 7.5, 7.5)
+                        : const EdgeInsets.fromLTRB(7.5, 7.5, 15, 7.5),
+                    child: FloatingActionButton(
+                      backgroundColor: Colors.white,
+                      child: const Icon(
+                        Icons.add,
+                        color: Colors.black,
+                      ),
+                      onPressed: () {},
                     ),
-                    onPressed: () {},
-                  ),
-                );
-              }),
-            ));
-
+                  );
+          }),
+        ));
   }
 
-
-
-  Widget gridCard(TodoItem model, int index){
-
-      return InkWell(
-        onTap: () {_showEditModal(context, TodoItem.todoItems[index], index);},
-        child: Container(
-          height: 100,
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          margin: index % 2 == 0
-              ? const EdgeInsets.fromLTRB(10, 7.5, 7.5, 7.5)
-              : const EdgeInsets.fromLTRB(7, 7.5, 15, 7.5),
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: TodoItem.todoItems[index].status
-                      ? [
-                    const Color.fromRGBO(222, 248, 255, 0.95),
-                    const Color.fromRGBO(222, 248, 255, 0.4)
-                  ]
-                      : [
-                    const Color.fromRGBO(222, 248, 255, 0.5),
-                    const Color.fromRGBO(222, 248, 255, 0.1)
-                  ]),
-              borderRadius: BorderRadius.circular(20)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-             Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  IconButton(
-                    onPressed: () { setState(() {
-                      _deleteTask(index);
-                    }); },
-                    icon: Icon( Icons.face_retouching_off_rounded,),)
-                ]
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                TodoItem.todoItems[index].title,
-                style: TextStyle(
-                    color: TodoItem.todoItems[index].status
-                        ? Colors.deepPurple
-                        : const Color(0xff302e45),
-                    fontSize: 19,
-                    fontWeight: FontWeight.w600),
-              ),
-              Text(
-                TodoItem.todoItems[index].status ? 'Admin' : 'Guest',
-                style: TextStyle(
-                    color: TodoItem.todoItems[index].status
-                        ? Colors.deepPurple
-                        : const Color(0xffa3a3a3),
-                    fontSize: 14),
-              ),
-            ],
-          ),
+  Widget gridCard(TodoItem model, int index) {
+    return InkWell(
+      onTap: () {
+        _showEditModal(context, TodoItem.todoItems[index], index);
+      },
+      child: Container(
+        height: 100,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        margin: index % 2 == 0
+            ? const EdgeInsets.fromLTRB(10, 7.5, 7.5, 7.5)
+            : const EdgeInsets.fromLTRB(7, 7.5, 15, 7.5),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: TodoItem.todoItems[index].status
+                    ? [
+                        const Color.fromRGBO(222, 248, 255, 0.95),
+                        const Color.fromRGBO(222, 248, 255, 0.4)
+                      ]
+                    : [
+                        const Color.fromRGBO(222, 248, 255, 0.5),
+                        const Color.fromRGBO(222, 248, 255, 0.1)
+                      ]),
+            borderRadius: BorderRadius.circular(20)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+              PopupMenuButton(
+                itemBuilder: (context) => [
+                  const PopupMenuItem(value: 0, child: Text("Delete User")),
+                ],
+                onSelected: (int value) {
+                  setState(() {
+                    _deleteTask(index);
+                  });
+                },
+              )
+            ]),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              TodoItem.todoItems[index].title,
+              style: TextStyle(
+                  color: TodoItem.todoItems[index].status
+                      ? Colors.deepPurple
+                      : const Color(0xff302e45),
+                  fontSize: 19,
+                  fontWeight: FontWeight.w600),
+            ),
+            Text(
+              TodoItem.todoItems[index].status ? 'Admin' : 'Guest',
+              style: TextStyle(
+                  color: TodoItem.todoItems[index].status
+                      ? Colors.deepPurple
+                      : const Color(0xffa3a3a3),
+                  fontSize: 14),
+            ),
+          ],
         ),
-      );
-    }
+      ),
+    );
   }
-
+}
 
 class TodoItem {
   late final String title;
@@ -299,8 +294,6 @@ class TodoItem {
     TodoItem(title: 'Anas El mountassir', status: false),
   ];
 }
-
-
 
 class BottomSheetSwitch extends StatefulWidget {
   BottomSheetSwitch({required this.switchValue, required this.valueChanged});
@@ -323,17 +316,13 @@ class _BottomSheetSwitch extends State<BottomSheetSwitch> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: CupertinoSwitch(
-          value: _switchValue,
-          onChanged: (bool value) {
-            setState(() {
-              _switchValue = value;
-              widget.valueChanged(value);
-            });
-          }),
-    );
+    return CupertinoSwitch(
+        value: _switchValue,
+        onChanged: (bool value) {
+          setState(() {
+            _switchValue = value;
+            widget.valueChanged(value);
+          });
+        });
   }
 }
-
-

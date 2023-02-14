@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import '../../DarkMode/DarkThemeProvider.dart';
 import '../../Widgets/power_btn.dart';
-import '../../Widgets/typography.dart';
 
 
 
@@ -46,6 +44,7 @@ class _LampPageState extends State<LampPage> {
                             ),
                           ),
                         ),
+
                       ],
                     ),
                     SizedBox(height: 36.h),
@@ -60,6 +59,20 @@ class _LampPageState extends State<LampPage> {
                               'Smart lamp #L354',
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
+
+                            Switch.adaptive(
+                              value: _isOn,
+                              onChanged: (bool v) {
+                                setState(() {
+                                  _isOn = v;
+                                  if (_isOn) {
+                                    isconnected = 'Connected';
+                                  } else if (_isOn == false) {
+                                    isconnected = 'Disconnected';
+                                  }
+                                });
+                              },
+                            )
                           ],
                         ),
                         Text(isconnected,style: Theme.of(context).textTheme.titleMedium,),
@@ -67,9 +80,9 @@ class _LampPageState extends State<LampPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            listItemStats(Icons.ac_unit_outlined, "cooling Mode", false),
-                            listItemStats(Icons.timer_outlined, "Set Timer", false),
-                            listItemStats(Icons.local_fire_department_outlined, "Turbo Mode", false)
+                            listItemStats(Icons.energy_savings_leaf_outlined, "Energy Saving", _isOn),
+                            listItemStats(Icons.light, "Warm Mode", false),
+                            listItemStats(Icons.color_lens_outlined, "Disco Mode", false)
                           ],
                         ),
 

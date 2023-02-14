@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-
-import '../../Widgets/colors.dart';
 import '../../Widgets/utils.dart';
-
 
 class MVPage extends StatefulWidget {
   @override
@@ -24,7 +21,6 @@ class _MVPageState extends State<MVPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
       body: SafeArea(
-        //minimum: const EdgeInsets.symmetric(horizontal: 25),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -37,18 +33,25 @@ class _MVPageState extends State<MVPage> {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-
-                          IconButton(icon: Icon(Icons.arrow_back_ios,),
-                            onPressed: () {Navigator.pop(context);},),
-
-                          Center(child: Text( "Microwave",
-                            style: Theme.of(context).textTheme.displaySmall),
+                          IconButton(
+                            icon: Icon(
+                              Icons.arrow_back_ios,
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                           ),
-                          IconButton( icon: Icon(Icons.more_vert), onPressed: () {}),
-                        ]),),
-
-                  const SizedBox( height: 20,),
-
+                          Center(
+                            child: Text("Microwave",
+                                style: Theme.of(context).textTheme.titleLarge),
+                          ),
+                          IconButton(
+                              icon: Icon(Icons.more_vert), onPressed: () {}),
+                        ]),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Column(
@@ -58,8 +61,7 @@ class _MVPageState extends State<MVPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text('Microwave #M354',
-                                style: Theme.of(context).textTheme.titleLarge
-                            ),
+                                style: Theme.of(context).textTheme.titleLarge),
                             Switch.adaptive(
                               value: isenabled,
                               onChanged: (bool v) {
@@ -75,17 +77,15 @@ class _MVPageState extends State<MVPage> {
                             )
                           ],
                         ),
-                        Text( isconnected ),
+                        Text(isconnected),
                       ],
                     ),
                   ),
-
-                  const SizedBox( height: 30,),
-
-                   Text(
-                    'Temperature',
-                    style: Theme.of(context).textTheme.displaySmall
+                  const SizedBox(
+                    height: 30,
                   ),
+                  Text('Temperature',
+                      style: Theme.of(context).textTheme.displaySmall),
                   const SizedBox(
                     height: 20,
                   ),
@@ -150,7 +150,7 @@ class _MVPageState extends State<MVPage> {
                                 ]),
                             child: SleekCircularSlider(
                               min: 60,
-                              max: 200,
+                              max: 240,
                               initialValue: 180,
                               appearance: CircularSliderAppearance(
                                 startAngle: 180,
@@ -216,8 +216,6 @@ class _MVPageState extends State<MVPage> {
                 ],
               ),
             ),
-
-
             Container(
               width: MediaQuery.of(context).size.width,
               height: 200,
@@ -237,9 +235,11 @@ class _MVPageState extends State<MVPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  listItemStats(Icons.ac_unit_outlined, "cooling Mode", isenabled),
+                  listItemStats(
+                      Icons.heat_pump_outlined, "cooking Mode", true),
                   listItemStats(Icons.timer_outlined, "Set Timer", isenabled),
-                  listItemStats(Icons.heat_pump_outlined, "Turbo Mode", isenabled)
+                  listItemStats(
+                      Icons.health_and_safety_outlined, "safe mode", false)
                 ],
               ),
             ),
@@ -249,7 +249,7 @@ class _MVPageState extends State<MVPage> {
     );
   }
 
-  Widget listItemStats( icon, String name, bool value) {
+  Widget listItemStats(icon, String name, bool value) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.25,
       height: 150,

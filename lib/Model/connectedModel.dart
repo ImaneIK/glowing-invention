@@ -33,7 +33,7 @@ class ConnectedModel extends Model{
       id: '4',
       title : 'Coffee Maker',
       status : 'Not Connected',
-      isEnable : false,
+      isEnable : true,
     ),
 
     Device(

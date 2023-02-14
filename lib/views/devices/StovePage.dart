@@ -64,7 +64,7 @@ class _StovePageState extends State<StovePage> {
                   listItemStats(
                       Icons.local_fire_department_outlined, "cooking Mode", isenabled),
                   listItemStats(Icons.timer_outlined, "Set Timer", isenabled),
-                  listItemStats(Icons.health_and_safety,
+                  listItemStats(Icons.health_and_safety_outlined,
                       "Safety mode", isenabled)
                 ],
               ),
@@ -124,12 +124,12 @@ class _StovePageState extends State<StovePage> {
                                 offset: Offset(1, 3))
                           ]),
                       child: SleekCircularSlider(
-                        min: kMinDegree,
-                        max: kMaxDegree,
-                        initialValue: 22,
+                        min: 60,
+                        max: 240,
+                        initialValue: 100,
                         appearance: CircularSliderAppearance(
                           startAngle: 180,
-                          angleRange: 180,
+                          angleRange: 360,
                           size: kDiameter - 30,
                           customWidths: CustomSliderWidths(
                             trackWidth: 10,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-
 import '../../Widgets/utils.dart';
 
 class AcPage extends StatefulWidget {
@@ -49,11 +48,10 @@ class _AcPageState extends State<AcPage> {
                     ),
                   ]),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width,
               height: 200,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(40),
                   topRight: Radius.circular(40),
@@ -62,116 +60,114 @@ class _AcPageState extends State<AcPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  listItemStats(Icons.ac_unit_outlined, "cooling Mode", isenabled),
+                  listItemStats(
+                      Icons.ac_unit_outlined, "cooling Mode", isenabled),
                   listItemStats(Icons.timer_outlined, "Set Timer", isenabled),
-                  listItemStats(Icons.local_fire_department_outlined, "Turbo Mode", isenabled)
+                  listItemStats(Icons.local_fire_department_outlined,
+                      "Turbo Mode", isenabled)
                 ],
               ),
             ),
-            Text('Temperature', style: Theme.of(context).textTheme.displaySmall,),
-
-
-            const SizedBox(height: 20,),
-
-
-            Container(
-              child: Stack(
-                children: [
-                  ShaderMask(
-                    shaderCallback: (rect) {
-                      return SweepGradient(
-                        startAngle: degToRad(0),
-                        endAngle: degToRad(184),
-                        colors: [Colors.indigo, Colors.grey.withAlpha(50)],
-                        stops: [progressVal, progressVal],
-                        transform: GradientRotation(
-                          degToRad(178),
-                        ),
-                      ).createShader(rect);
-                    },
-                    /* child: Center(
-              child: CustomArc(),
-            ),*/
-                  ),
-                  Center(
-                    child: Container(
-                      width: MediaQuery.of(context).size.height * 0.3,
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: isenabled
-                                  ? [
-                                      const Color.fromRGBO(222, 248, 255, 0.95),
-                                      const Color.fromRGBO(222, 248, 255, 0.4)
-                                    ]
-                                  : [
-                                      const Color.fromRGBO(222, 248, 255, 0.5),
-                                      const Color.fromRGBO(222, 248, 255, 0.1)
-                                    ]),
-                          //color: Colors.white,
-                          shape: BoxShape.circle,
-
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 40,
-                                spreadRadius: 20,
-                                color: Colors.blue.withAlpha(
-                                    normalize(progressVal * 20000, 100, 255)
-                                        .toInt()),
-                                offset: Offset(1, 3))
-                          ]),
-
-
-                      child: SleekCircularSlider(
-                        min: kMinDegree,
-                        max: kMaxDegree,
-                        initialValue: 22,
-                        appearance: CircularSliderAppearance(
-                          startAngle: 180,
-                          angleRange: 180,
-                          size: kDiameter - 30,
-                          customWidths: CustomSliderWidths(
-                            trackWidth: 10,
-                            shadowWidth: 0,
-                            progressBarWidth: 01,
-                            handlerSize: 15,
-                          ),
-                          customColors: CustomSliderColors(
-                            hideShadow: true,
-                            progressBarColor: Colors.transparent,
-                            trackColor: Colors.transparent,
-                            dotColor: Colors.lightBlueAccent,
-                          ),
-                        ),
-                        onChange: (value) {
-                          setState(() {
-                            progressVal =
-                                normalize(value, kMinDegree, kMaxDegree);
-                          });
-                        },
-                        innerWidget: (percentage) {
-                          return Center(
-                            child: Text(
-                              '${percentage.toInt()}°c',
-                              style: TextStyle(
-                                fontSize: 50,
-                              ),
-                            ),
-                          );
-                        },
+            Text(
+              'Temperature',
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Stack(
+              children: [
+                ShaderMask(
+                  shaderCallback: (rect) {
+                    return SweepGradient(
+                      startAngle: degToRad(0),
+                      endAngle: degToRad(184),
+                      colors: [Colors.indigo, Colors.grey.withAlpha(50)],
+                      stops: [progressVal, progressVal],
+                      transform: GradientRotation(
+                        degToRad(178),
                       ),
+                    ).createShader(rect);
+                  },
+                  /* child: Center(
+            child: CustomArc(),
+            ),*/
+                ),
+                Center(
+                  child: Container(
+                    width: MediaQuery.of(context).size.height * 0.3,
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: isenabled
+                                ? [
+                                    const Color.fromRGBO(222, 248, 255, 0.95),
+                                    const Color.fromRGBO(222, 248, 255, 0.4)
+                                  ]
+                                : [
+                                    const Color.fromRGBO(222, 248, 255, 0.5),
+                                    const Color.fromRGBO(222, 248, 255, 0.1)
+                                  ]),
+                        //color: Colors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 40,
+                              spreadRadius: 20,
+                              color: Colors.blue.withAlpha(
+                                  normalize(progressVal * 20000, 100, 255)
+                                      .toInt()),
+                              offset: const Offset(1, 3))
+                        ]),
+                    child: SleekCircularSlider(
+                      min: kMinDegree,
+                      max: kMaxDegree,
+                      initialValue: 22,
+                      appearance: CircularSliderAppearance(
+                        startAngle: 180,
+                        angleRange: 180,
+                        size: kDiameter - 30,
+                        customWidths: CustomSliderWidths(
+                          trackWidth: 10,
+                          shadowWidth: 0,
+                          progressBarWidth: 01,
+                          handlerSize: 15,
+                        ),
+                        customColors: CustomSliderColors(
+                          hideShadow: true,
+                          progressBarColor: Colors.transparent,
+                          trackColor: Colors.transparent,
+                          dotColor: Colors.lightBlueAccent,
+                        ),
+                      ),
+                      onChange: (value) {
+                        setState(() {
+                          progressVal =
+                              normalize(value, kMinDegree, kMaxDegree);
+                        });
+                      },
+                      innerWidget: (percentage) {
+                        return Center(
+                          child: Text(
+                            '${percentage.toInt()}°c',
+                            style: const TextStyle(
+                              fontSize: 50,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             const SizedBox(
               height: 10,
             ),
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.power_settings_new,
                 color: Colors.blue,
                 size: 30,
@@ -197,7 +193,7 @@ class _AcPageState extends State<AcPage> {
     );
   }
 
-  Widget listItemStats( icon, String name, bool value) {
+  Widget listItemStats(icon, String name, bool value) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.25,
       height: 150,
@@ -219,11 +215,11 @@ class _AcPageState extends State<AcPage> {
       ),
       child: Column(
         children: <Widget>[
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Icon(icon),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Text(name, style: Theme.of(context).textTheme.titleMedium),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Switch(
             value: value,
             onChanged: (newVal) {
@@ -232,7 +228,7 @@ class _AcPageState extends State<AcPage> {
                 print(newVal);
               });
             },
-            activeColor: Color.fromRGBO(4, 20, 244,1),
+            activeColor: const Color.fromRGBO(4, 20, 244, 1),
           )
         ],
       ),

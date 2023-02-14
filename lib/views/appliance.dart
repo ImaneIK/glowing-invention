@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lumosmaxima/main.dart';
+import 'package:lumosmaxima/views/settings.dart';
 import 'package:provider/provider.dart';
 import '../DarkMode/DarkThemeProvider.dart';
 import '../Model/connectedModel.dart';
@@ -6,7 +8,6 @@ import '../Model/scenesModel.dart';
 import '../Widgets/SceneSection.dart';
 import '../Widgets/devices.dart';
 import '../Widgets/glass.dart';
-import '../routing.dart';
 
 class Appliance extends StatefulWidget {
   final DeviceModel model1 = DeviceModel();
@@ -18,6 +19,8 @@ class Appliance extends StatefulWidget {
 
 class _ApplianceState extends State<Appliance> {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+ var section = "devices";
 
   Widget? redirectSection(section) {
     if (section == "devices") {
@@ -36,12 +39,27 @@ class _ApplianceState extends State<Appliance> {
         automaticallyImplyLeading: false,
         elevation: 0.1,
         title:
-        Text("Appliance", style: Theme.of(context).textTheme.displaySmall),
+        Text("Appliance", style: Theme.of(context).textTheme.titleLarge),
         leading: Icon(Icons.developer_board),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: CircleAvatar(backgroundColor: Colors.transparent, backgroundImage: AssetImage("smart-home.png"),),
+            child: PopupMenuButton(
+
+              itemBuilder: (context) => [
+                const PopupMenuItem(value: 0, child: Text("Settings")),
+                const PopupMenuItem(value: 1, child: Text("Logout"))
+              ],
+              onSelected: (int value) {
+                setState(() {
+                  if (value == 0) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Settings()));
+                  } else {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
+                  }
+                });
+              },
+                child: CircleAvatar(backgroundColor: Colors.transparent, backgroundImage: AssetImage("avatar.jpg"),)),
           )
         ],),
       //drawer: MyDrawer(navigatorKey),
