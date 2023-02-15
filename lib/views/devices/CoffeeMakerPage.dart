@@ -149,7 +149,7 @@ class _CoffeeMakerPageState extends State<CoffeeMakerPage> {
                               children: [
                                 IconButton(
                                   icon: const Icon(
-                                    Icons.arrow_back_ios,
+                                    Icons.arrow_back,
                                   ),
                                   onPressed: () {
                                     Navigator.pop(context);

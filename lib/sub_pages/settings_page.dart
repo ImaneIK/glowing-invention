@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:lumosmaxima/sub_pages/user_details.dart';
+import 'package:lumosmaxima/main.dart';
 import 'package:lumosmaxima/sub_pages/users.dart';
 import 'package:provider/provider.dart';
 
 import '../DarkMode/DarkThemeProvider.dart';
 import '../Widgets/glass.dart';
 import '../Widgets/theme_switch.dart';
-import 'logout.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -30,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         child: ListView(padding: const EdgeInsets.all(10), children: [
           const SizedBox( height: 20,),
-          myProfile(const UserDetails()),
+          myProfile(),
           const SizedBox(height: 25,),
           settingTile("Appearance", "Make this app yours", Icons.brush_outlined,
               null, 10, 10, 0, 0),
@@ -48,18 +47,19 @@ class _SettingsPageState extends State<SettingsPage> {
               Icons.feedback_outlined, null, 0, 0, 10, 10),
           const SizedBox(height: 20,),
           settingTile("Logout", "Sign out from the app", Icons.logout_outlined,
-              buildLogout(), 10, 10, 10, 10),
+              MyApp(), 10, 10, 10, 10),
         ]),
       ),
     );
   }
 
-  Widget myProfile(route) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => route));
-      },
-      child: Container(
+
+  var username="John Doe";
+
+  Widget myProfile() {
+    var object = Provider.of<DarkThemeProvider>(context).darkTheme;
+
+    return Container(
           height: 130,
           decoration: BoxDecoration(
               gradient: const LinearGradient(
@@ -69,25 +69,71 @@ class _SettingsPageState extends State<SettingsPage> {
                     Color.fromRGBO(222, 248, 255, 0.8),
                     Color.fromRGBO(222, 248, 255, 0.2)
                   ]),
-              borderRadius: BorderRadius.circular(10)),
+              borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              width: 1.5,
+              color: Color.fromRGBO(4, 20, 244, 1).withOpacity( object ? 0 : 1),
+            ),),
           child: Center(
             child: ListTile(
               title: Text(
-                'John Doe',
-                style: Theme.of(context).textTheme.displayLarge,
+                username,
+                style: Theme.of(context).textTheme.displayMedium,
               ),
               subtitle: Text(
                 'Admin',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               leading: CircleAvatar(
-                backgroundImage: AssetImage("avatar.png"),
+                backgroundImage: AssetImage("avatar.jpg"),
               ),
-                trailing: Icon(Icons.edit),
+                trailing: IconButton(icon: Icon(Icons.edit), onPressed: () { _showEditModal(context); }, )
             ),
-          )),
+          )
     );
   }
+
+
+  Future<void> _showEditModal(
+      BuildContext context) async {
+    final taskController =
+    TextEditingController(text: username);
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: <Widget>[
+              TextField(
+                controller: taskController,
+                decoration: const InputDecoration(
+                  labelText: 'Username',
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    username = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                child: const Text('Save changes'),
+                onPressed: () {
+                  setState(() {
+                       username=taskController.text;
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+
 
   Widget settingTile(
       name, role, icon, route, topRight, topLeft, bottomLeft, bottomRight) {

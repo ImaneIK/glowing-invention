@@ -35,7 +35,7 @@ class _MVPageState extends State<MVPage> {
                         children: [
                           IconButton(
                             icon: Icon(
-                              Icons.arrow_back_ios,
+                              Icons.arrow_back,
                             ),
                             onPressed: () {
                               Navigator.pop(context);

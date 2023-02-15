@@ -45,7 +45,6 @@ class _DeviceSectionState extends State<DeviceSection> {
   }
 
   Widget _buildDeviceCard(DeviceModel model, int index) {
-    var object = Provider.of<DarkThemeProvider>(context).darkTheme;
 
     return InkWell(
       onTap: () => getItemAndNavigate(model.allYatch[index], context),

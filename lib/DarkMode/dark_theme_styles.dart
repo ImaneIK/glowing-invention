@@ -103,7 +103,7 @@ class Styles {
           isDarkTheme ? const Color(0xff3A3A3B) : const Color(0xff4285F4),
 
       focusColor:
-          isDarkTheme ? const Color(0xff0B2512) : const Color(0xffA8DAB5),
+          isDarkTheme ? const Color(0xff0B2512) : Color.fromRGBO(0, 13, 198, 1),
       disabledColor: Colors.grey,
       textSelectionTheme: TextSelectionThemeData(
           selectionColor: isDarkTheme ? Colors.white : Colors.deepPurpleAccent),

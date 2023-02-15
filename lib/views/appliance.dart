@@ -178,7 +178,7 @@ Widget dashCard(icon, text, context) {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Icon(icon, size: 30,),
-            Text(text, style: TextStyle(fontSize: 18), textAlign: TextAlign.center,),
+            Text(text, style: Theme.of(context).textTheme.titleMedium,),
           ],
         ),
       ),

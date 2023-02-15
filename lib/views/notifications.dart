@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../DarkMode/DarkThemeProvider.dart';
 import '../Widgets/glass.dart';
 import '../main.dart';
-import '../sub_pages/user_details.dart';
 
 
 class Notifications extends StatefulWidget {

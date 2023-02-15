@@ -34,7 +34,7 @@ class _LampPageState extends State<LampPage> {
 
                         GestureDetector(
                           onTap: () => Navigator.pop(context),
-                          child: const Icon(Icons.arrow_back_ios),
+                          child: const Icon(Icons.arrow_back),
                         ),
                         Expanded(
                           child: Center(
@@ -44,6 +44,9 @@ class _LampPageState extends State<LampPage> {
                             ),
                           ),
                         ),
+
+                        IconButton(
+                            icon: const Icon(Icons.more_vert), onPressed: () {}),
 
                       ],
                     ),

@@ -138,6 +138,7 @@ class _UserConfState extends State<UserConf> {
       body: whichView(),
 
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromRGBO(0, 13, 198, 1),
         child: const Icon(Icons.add),
         onPressed: () {
           setState(() {
@@ -182,7 +183,6 @@ class _UserConfState extends State<UserConf> {
   Widget gridViewWidget() {
     return Container(
         alignment: Alignment.topCenter,
-        height: 487,
         child: GridView.count(
           crossAxisCount: 2,
           padding: const EdgeInsets.all(0),
