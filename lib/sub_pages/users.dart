@@ -25,7 +25,7 @@ class _UserConfState extends State<UserConf> {
               TextField(
                 controller: taskController,
                 decoration: const InputDecoration(
-                  labelText: 'Task',
+                  labelText: 'Username',
                 ),
               ),
               const SizedBox(height: 20),
