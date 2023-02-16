@@ -1,4 +1,6 @@
-# lumosmaxima
+# Smart Home App
+
+![image](https://user-images.githubusercontent.com/65131594/219477454-9075d99b-80fe-488a-8556-c57e69ca11f7.png)
 
 A new Flutter project.
 
